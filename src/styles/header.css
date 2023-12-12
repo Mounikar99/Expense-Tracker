@@ -11,13 +11,17 @@
 
 .headerOptions{
     float: right;
+    
+}
+
+#notificationIcon, #logoutIcon{
     margin: 10px;
     padding: 5px;
     border-radius: 50%;
     cursor: pointer;
 }
 
-.headerOptions:hover{
+#notificationIcon:hover, #logoutIcon:hover{
     background-color: #202020;
     color: #2ECC71;
 }

@@ -41,7 +41,7 @@ function AddExpense({addExpense}) {
         const year = inputDate.getFullYear();
 
         // Format the date in the desired format
-        return `${day}/${month}/${year}`;
+        return `${month}/${day}/${year}`;
     }
     return (
         <div id='addExpenseContainer'>

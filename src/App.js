@@ -13,6 +13,7 @@ import { onAuthStateChanged } from "firebase/auth";
 import { auth, db } from "./store/Firebase";
 import LoginSignup from "./components/login-signup";
 import { collection, addDoc, getDocs, deleteDoc, doc } from "firebase/firestore";
+import { signOut } from "firebase/auth";
 
 
 function App() {
@@ -125,6 +126,11 @@ function App() {
   const openCloseDialog = () => {
     setOpenDialog(!openDialog);
   }
+
+  const logOut = () => {
+    signOut(auth);
+    setUser(null);
+  }
   return (
     <ExpenseContext.Provider
       value={{ expenses, setExpenses, budget, setBudget }}
@@ -133,7 +139,7 @@ function App() {
       {isLoading && (<Loader />)}
       {user ? (
         <div className="App">
-          <Header openCloseDialog={openCloseDialog} />
+          <Header openCloseDialog={openCloseDialog} logOut={logOut} />
           <Overview
             spent={spentAmount}
             earned={earnAmount}
