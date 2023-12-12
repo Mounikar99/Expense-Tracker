@@ -52,9 +52,10 @@ You don't have to ever use `eject`. The curated feature set is suitable for smal
 - GitHub
 
 # Reflection
-- In the future, I would to add the feature to integrate with bank accounts directly.
-- in the future, direct notification to mobile or email about expenses and report
-- 
+- Moving forward, I aim to incorporate direct integration with bank accounts as a future feature enhancement for the Expense Tracker Application.
+- Additionally, I intend to implement direct notifications to users via mobile or email, providing timely updates about expenses and generating comprehensive reports.
+- One of my upcoming goals involves improving user accessibility by introducing a time-saving feature where users can effortlessly add expenses by simply scanning and updating the information.
+ 
 
 ## Learn More
 
