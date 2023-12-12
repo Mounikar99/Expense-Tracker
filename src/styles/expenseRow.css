@@ -1,0 +1,62 @@
+:root{
+    --spent-color: #ff2b2b;
+    --earn-color: #00bc00;
+}
+
+.spent{
+    background-color: var(--spent-color);
+    opacity: 0.6;
+    padding: 1px 5px;
+    border-radius: 5px;
+}
+
+.earn{
+    background-color: var(--earn-color);
+    opacity: 0.6;
+    padding: 1px 5px;
+    border-radius: 5px;
+}
+
+.expenseName{
+    width: 40%;
+    text-align: left;
+}
+
+.expenseDate{
+    width: 20%;
+    text-align: left;
+    color: #6c6c6c;
+}
+
+.expenseAmount {
+    width: 20%;
+    text-align: center;
+}
+
+
+.expenseRow{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    font-size: 20px;
+    font-weight: 400;
+    width: 95%;
+    height: 23px;
+    background: #161616;
+    border-radius: 8px;
+    border-left: 3px solid red;
+}
+
+.deleteExpense{
+    color: #6c6c6c;
+}
+
+.deleteExpense:hover{
+    color: white;
+    cursor: pointer;
+}
+
+.expenseIcon{
+    filter: drop-shadow(2px 4px 6px black);
+}

@@ -1,0 +1,54 @@
+#addExpenseContainer{
+    background-color: #202020;
+    width: 30%;
+    border-radius: 10px;
+    box-shadow: 5px 6px 10px rgb(0 0 0 / 57%);
+    border: 1px solid #494949;
+}
+.addExpenseFieldContainer{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 10px 0px;
+}
+.addExpenseField{
+    color: white;
+}
+
+#category, #name, #amount, #date, #type{
+    background: #161616;
+    width: 60%;
+    height: 35px;
+    border-radius: 5px;
+    outline: none;
+    border: none;
+    color: white;
+    padding-left: 10px;
+}
+
+#category:focus, #name:focus, #amount:focus, #date:focus {
+    border: 1px solid rgb(105, 105, 105);
+}
+
+#category, #type{
+    width: 30%;
+}
+
+.addExpenseButton{
+    width: 60%;
+    height: 30px;
+    border-radius: 5px;
+    align-self: center;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    background-color: var(--earn-color);
+    font-weight: 700 !important;
+}
+
+.categoryContainer{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
