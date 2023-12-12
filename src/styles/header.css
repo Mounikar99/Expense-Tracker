@@ -1,9 +1,23 @@
 .heading{
     font-size: 30px;
     font-weight: 500;
-    padding: 5px;
+    padding: 10px;
+    display: inline-block;
 }
 
 #mainHeader{
     background-color: #2ECC71;
+}
+
+.headerOptions{
+    float: right;
+    margin: 10px;
+    padding: 5px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.headerOptions:hover{
+    background-color: #202020;
+    color: #2ECC71;
 }

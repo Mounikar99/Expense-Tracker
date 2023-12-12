@@ -3,12 +3,15 @@ import "../styles/overview.css";
 
 function Overview({spent, earned, budget, setBudget, balance}) {
   const [isEditBudget, setIsEditBudget] = useState(false);
+  const [newBudget, setNewBudget] = useState(budget);
   const editBudget = () => {
     setIsEditBudget(!isEditBudget);
   }
 
-  const setBudgetLimit = (newBudget) => {
+  const setBudgetLimit = () => {
+    debugger
     setBudget(+newBudget);
+    editBudget();
   }
   return (
     <div id="overviewSection">
@@ -27,8 +30,8 @@ function Overview({spent, earned, budget, setBudget, balance}) {
             <span className="overviewBoxTitle">Total Budget</span>
             { isEditBudget ? 
               <div id="budgetInputContainer">
-                <input type="number" id="budgetInput" placeholder="Monthly Budget" value={budget} onInput={(args) => setBudgetLimit(args.target.value)} />
-                <span id="budgetDoneIcon" onClick={() => editBudget()} className="material-symbols-outlined">done</span>
+                <input type="number" id="budgetInput" placeholder="Monthly Budget" value={newBudget} onChange={(e) => setNewBudget(e.target.value)}/>
+                <span id="budgetDoneIcon" onClick={() => setBudgetLimit()} className="material-symbols-outlined">done</span>
               </div> : 
               <span className="overviewBoxAmount">${budget}
                 <span id="budgetEditIcon" onClick={() => editBudget()} className="material-symbols-outlined">edit</span>

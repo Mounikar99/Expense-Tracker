@@ -7,7 +7,7 @@ function ExpenseRow({ expense, deleteExpense }) {
     const amount = isEarn ? `$${expense.amount}` : `-$${expense.amount}`;
     useEffect(() => {
         updateExpenseIcon(expense.category);
-    }, expense)
+    }, [expense])
 
     const updateExpenseIcon = (category) => {
         if(category === 'food') {

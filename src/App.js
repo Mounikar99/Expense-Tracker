@@ -1,9 +1,11 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import Header from "./components/header";
 import Overview from "./components/overview";
 import ExpensesHistory from "./components/expensesHistory";
 import AddExpense from "./components/addExpense";
 import ChartComponent from "./components/chart";
 import Loader from "./components/loader";
+import Dialog from "./components/dialog";
 import "./App.css";
 import { useEffect, useState } from "react";
 import { ExpenseContext } from "./store/ExpenseContext";
@@ -21,6 +23,7 @@ function App() {
   const [earnAmount, setEarnAmount] = useState(0);
   const [balance, setBalance] = useState(0);
   const [user, setUser] = useState(null);
+  const [openDialog, setOpenDialog] = useState(false);
 
   const addExpenseToList = async (newExpense) => {
     setExpenses([...expenses, newExpense]);
@@ -44,7 +47,23 @@ function App() {
   const setBugetLimit = (newBudget) => {
     setBudget(newBudget);
     setBalance(newBudget - spentAmount);
+    setBugetLimitInDB(newBudget);
   };
+
+  const setBugetLimitInDB = async (newBudget) => {
+    const querySnapshot = await getDocs(collection(db, "budget"));
+    let budgets = [];
+    querySnapshot.forEach((budget) => {
+      budgets.push({ ...budget.data(), id: budget.id });
+    });
+    budgets = budgets.filter((budget) => user && budget.uid === user.uid);
+    if(budgets.length > 0) {
+      budgets.forEach(async (budget) => {
+        await deleteDoc(doc(db, "budget", budget.id));
+      });
+    }
+    await addDoc(collection(db, "budget"), { budget: newBudget, uid: user.uid });
+  }
 
   useEffect(() => {
     updateAmounts();
@@ -57,6 +76,7 @@ function App() {
 
   useEffect(() => {
     getExpensesFromDB();
+    getBudgetLimitFromDB();
   }, [user]);
 
   const getExpensesFromDB = async () => {
@@ -70,8 +90,19 @@ function App() {
     setIsLoading(false);
   }
 
+  const getBudgetLimitFromDB = async () => {
+    const querySnapshot = await getDocs(collection(db, "budget"));
+    let docs = [];
+    querySnapshot.forEach((doc) => {
+      docs.push({ ...doc.data(), id: doc.id });
+    });
+    docs = docs.filter((doc) => user && doc.uid === user.uid);
+    if(docs.length > 0) {
+      setBudget(docs[0].budget);
+    }
+  }
+
   const updateAmounts = () => {
-    
     let totalSpent = 0;
     let totalEarned = 0;
     for (let i = 0; i < expenses.length; i++) {
@@ -90,16 +121,19 @@ function App() {
     );
     setBalance(budget + totalEarned - totalExpense);
   };
+
+  const openCloseDialog = () => {
+    setOpenDialog(!openDialog);
+  }
   return (
     <ExpenseContext.Provider
       value={{ expenses, setExpenses, budget, setBudget }}
     >
-      {isLoading && (
-        <Loader />
-      )}
+      {openDialog && (<Dialog openCloseDialog={openCloseDialog} />)}
+      {isLoading && (<Loader />)}
       {user ? (
         <div className="App">
-          <Header />
+          <Header openCloseDialog={openCloseDialog} />
           <Overview
             spent={spentAmount}
             earned={earnAmount}

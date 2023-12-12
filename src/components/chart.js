@@ -11,7 +11,7 @@ function ChartComponent({expenses, type}) {
     const filtered = expenses.filter((expense) => expense.type === type);
     const data = groupBy(filtered, "category");
     setChartData(data);
-  }, [expenses])
+  }, [expenses, type]);
   const groupBy = (array, key) => {
     if(!array || !key) {
       return null;
