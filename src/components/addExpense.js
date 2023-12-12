@@ -8,6 +8,10 @@ function AddExpense({addExpense}) {
     const [date, setDate] = useState(today.toISOString().substring(0, 10));
     const [type, setType] = useState('spent');
     const [category, setcategory] = useState('food');
+    const spentCategories = [{text: '🍕 Food', value: 'food'}, {text: '🧳 Travel', value: 'travel'}, {text: '🏠 Rent', value: 'rent'}, {text: "🎁 Gift", value: 'gift'}, {text: '📚 Education', value: 'education'},
+     {text: '📺 Entertainment', value: 'entertainment'}, {text: '🏥 Health', value: 'health'}, {text: '🛒 Shopping', value: 'shopping'}, {text: '🗒️ Bills', value: 'bills'}, {text: '💸 Other', value: 'other'}];
+
+    const earnCatogories = [{text: '💰 Salary', value: 'salary'}, {text: '📈 Investment', value: 'investment'}, {text: '💼 Freelance', value: 'freelance'}, {text: '💸 Other', value: 'other'}];
     const updateExpenseData = (e) => {
         if (e.target.id === 'name') {
             setName(e.target.value);
@@ -55,14 +59,13 @@ function AddExpense({addExpense}) {
                             <option value='earn'>🟢 Earn</option>
                         </select>
                         <select id='category' onClick={(e) => updateExpenseData(e)}>
-                            <option value='food'>🍕 Food</option>
-                            <option value='rent'>🏠 Rent</option>
-                            <option value='travel'>🧳 Travel</option>
-                            <option value='bills'>🗒️ Bills</option>
-                            <option value='shopping'>🛒 Shopping</option>
-                            <option value='entertainment'>📺 Entertainment</option>
-                            <option value='health'>🏥 Health</option>
-                            <option value='other'>💸 Other</option>
+                            {
+                                type === 'spent' ? spentCategories.map((category) => {
+                                    return <option value={category.value}>{category.text}</option>
+                                }) : earnCatogories.map((category) => {
+                                    return <option value={category.value}>{category.text}</option>
+                                })
+                            }
                         </select>
                     </div>
                 </div>

@@ -41,6 +41,7 @@
     border: none;
     color: white;
     cursor: pointer;
+    transition: all 0.3s ease;
 }
 
 #loginSignupContainer button:hover{
@@ -62,4 +63,10 @@
     color: #2ECC71;
     font-weight: 600;
     cursor: pointer;
+}
+
+#avatar{
+    font-variation-settings: 'FILL' 0, 'wght' 200, 'GRAD' 0, 'opsz' 24;
+    font-size: 60px;
+    color: #2ECC71;
 }

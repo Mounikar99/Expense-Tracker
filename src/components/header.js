@@ -6,8 +6,8 @@ function Header({openCloseDialog, logOut}) {
     <div id="mainHeader">
       <div className="heading">Expense Tracker</div>
       <div className="headerOptions">
-       <span class="material-symbols-outlined" id="notificationIcon" onClick={() => openCloseDialog()}>notifications</span>
-       <span class="material-symbols-outlined" id="logoutIcon" onClick={() => logOut()}>logout</span>
+       <span className="material-symbols-outlined" id="notificationIcon" onClick={() => openCloseDialog()}>notifications</span>
+       <span className="material-symbols-outlined" id="logoutIcon" onClick={() => logOut()}>logout</span>
       </div>
     </div>
   );

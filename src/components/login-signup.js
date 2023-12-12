@@ -46,6 +46,7 @@ function LoginSignup() {
   }
   return (
     <div id="loginSignupContainer">
+      <span class="material-symbols-outlined" id="avatar">person_pin</span>
       <form>
           <input
             type="email"
